@@ -48,9 +48,9 @@ class RpgCommands extends PluginBase implements CommandExecutor{
           $this->getOwner()->getServer()->loadLevel($this->getOwner()->config->get("RPGworld"));
           switch(strtolower($args[1])) {
           case "mage":
-            if($p->hasPermission("class.chosen")) {
+            if($this->getOwner()->playerclass->get($sender->getName()."class") === true){
               $p->sendMessage(TF:: RED . "You have already picked a class!");
-            } else {
+            } elseif($this->getOwner()->playerclass->get($sender->getName()) === "mage"){
               $p->sendMessage(TF:: AQUA . "You have joined the world as a mage!");
               $wand = Item::get(Item::STICK, 0, 1);
               $p->getInventory()->addItem($wand);
@@ -64,9 +64,9 @@ class RpgCommands extends PluginBase implements CommandExecutor{
             break;
             
           case "warrior":
-            if($p->hasPermission("class.chosen")) {
+            if($this->getOwner()->playerclass->get($sender->getName()."class") === true){
               $p->sendMessage(TF:: RED . "You have already picked a class!");
-            } else {
+            } elseif($this->getOwner()->playerclass->get($sender->getName()) === "warrior"){
               $p->sendMessage(TF:: AQUA . "You have joined the world as a warrior!");
               $sword = Item::get(Item::IRON_SWORD, 0, 1);
               $p->getInventory()->addItem($sword);
@@ -80,9 +80,9 @@ class RpgCommands extends PluginBase implements CommandExecutor{
             break;
             
           case "tanker":
-            if($p->hasPermission("class.chosen")) {
+            if($this->getOwner()->playerclass->get($sender->getName()."class") === true){
               $p->sendMessage(TF:: RED . "You have already picked a class!");
-            } else {
+            } elseif($this->getOwner()->playerclass->get($sender->getName()) === "tanker"){
               $p->sendMessage(TF:: AQUA . "You have joined the world as a tanker!");
               $shield = Item::get(Item::BRICK, 0, 1);
               $p->getInventory()->addItem($shield);
@@ -96,9 +96,9 @@ class RpgCommands extends PluginBase implements CommandExecutor{
             break;
    
           case "assassin":
-            if($p->hasPermission("class.chosen")) {
+            if($this->getOwner()->playerclass->get($sender->getName()."class") === true){
               $p->sendMessage(TF:: RED . "You have already picked a class!");
-            } elseif($p->hasPermission("class.special")) {
+            } elseif($this->getOwner()->playerclass->get($sender->getName()) === "tanker"){
               $p->sendMessage(TF:: AQUA . "You have joined the world as an assassin!");
               $knife = Item::get(Item::FEATHER, 0, 1);
               $p->getInventory()->addItem($knife);
@@ -116,7 +116,7 @@ class RpgCommands extends PluginBase implements CommandExecutor{
           break;
 
           case "warp":
-            if ($p->hasPermission ("class.chosen")) {
+            if($this->getOwner()->playerclass->get($sender->getName()."class") === true){
               $p->sendMessage (TF::AQUA . "You warped to the RPG world!");
               $p->teleport($this->getOwner()->getServer()->getLevelByName($this->getOwner()->config->get("RPGworld"))->getSafeSpawn());
             } else {
