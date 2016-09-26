@@ -50,14 +50,13 @@ class RpgCommands extends PluginBase implements CommandExecutor{
           case "mage":
             if($this->getOwner()->playerclass->get($sender->getName()."class") === true){
               $p->sendMessage(TF:: RED . "You have already picked a class!");
-            } elseif($this->getOwner()->playerclass->get($sender->getName()) === "mage"){
+            } else {
               $p->sendMessage(TF:: AQUA . "You have joined the world as a mage!");
               $wand = Item::get(Item::STICK, 0, 1);
               $p->getInventory()->addItem($wand);
               $book = Item::get (Item::BOOK, 0, 1);
               $p->getInventory ()->addItem ($book);
-              $this->getOwner()->getServer()->dispatchCommand(new ConsoleCommandSender(), "setuperm " . $p->getName() . " class.chosen");
-              $this->getOwner()->getServer()->dispatchCommand(new ConsoleCommandSender(), "setuperm " . $p->getName() . " class.mage");
+              $this->getOwner()->updateClass($sender, $args[1]);
               $p->teleport($this->getOwner()->getServer()->getLevelByName($this->getOwner()->config->get("RPGworld"))->getSafeSpawn());
             }
             return true;
@@ -66,14 +65,13 @@ class RpgCommands extends PluginBase implements CommandExecutor{
           case "warrior":
             if($this->getOwner()->playerclass->get($sender->getName()."class") === true){
               $p->sendMessage(TF:: RED . "You have already picked a class!");
-            } elseif($this->getOwner()->playerclass->get($sender->getName()) === "warrior"){
+            } else {
               $p->sendMessage(TF:: AQUA . "You have joined the world as a warrior!");
               $sword = Item::get(Item::IRON_SWORD, 0, 1);
               $p->getInventory()->addItem($sword);
               $book = Item::get (Item::BOOK, 0, 1);
               $p->getInventory ()->addItem ($book);
-              $this->getOwner()->getServer()->dispatchCommand(new ConsoleCommandSender(), "setuperm " . $p->getName() . " class.chosen");
-              $this->getOwner()->getServer()->dispatchCommand(new ConsoleCommandSender(), "setuperm " . $p->getName() . " class.warrior");
+              $this->getOwner()->updateClass($sender, $args[1]);
               $p->teleport($this->getOwner()->getServer()->getLevelByName($this->getOwner()->config->get("RPGworld"))->getSafeSpawn());
             }
             return true;
@@ -82,14 +80,13 @@ class RpgCommands extends PluginBase implements CommandExecutor{
           case "tanker":
             if($this->getOwner()->playerclass->get($sender->getName()."class") === true){
               $p->sendMessage(TF:: RED . "You have already picked a class!");
-            } elseif($this->getOwner()->playerclass->get($sender->getName()) === "tanker"){
+            } else {
               $p->sendMessage(TF:: AQUA . "You have joined the world as a tanker!");
               $shield = Item::get(Item::BRICK, 0, 1);
               $p->getInventory()->addItem($shield);
               $book = Item::get (Item::BOOK, 0, 1);
               $p->getInventory ()->addItem ($book);
-              $this->getOwner()->getServer()->dispatchCommand(new ConsoleCommandSender(), "setuperm " . $p->getName() . " class.chosen");
-              $this->getOwner()->getServer()->dispatchCommand(new ConsoleCommandSender(), "setuperm " . $p->getName() . " class.tanker");
+              $this->getOwner()->updateClass($sender, $args[1]);
               $p->teleport($this->getOwner()->getServer()->getLevelByName($this->getOwner()->config->get("RPGworld"))->getSafeSpawn());
             }
             return true;
@@ -98,14 +95,13 @@ class RpgCommands extends PluginBase implements CommandExecutor{
           case "assassin":
             if($this->getOwner()->playerclass->get($sender->getName()."class") === true){
               $p->sendMessage(TF:: RED . "You have already picked a class!");
-            } elseif($this->getOwner()->playerclass->get($sender->getName()) === "tanker"){
+            } else {
               $p->sendMessage(TF:: AQUA . "You have joined the world as an assassin!");
               $knife = Item::get(Item::FEATHER, 0, 1);
               $p->getInventory()->addItem($knife);
               $book = Item::get (Item::BOOK, 0, 1);
               $p->getInventory ()->addItem ($book);
-              $this->getOwner()->getServer()->dispatchCommand(new ConsoleCommandSender(), "setuperm " . $p->getName() . " class.chosen");
-              $this->getOwner()->getServer()->dispatchCommand(new ConsoleCommandSender(), "setuperm " . $p->getName() . " class.assassin");
+              $this->getOwner()->updateClass($sender, $args[1]);
               $p->teleport($this->getOwner()->getServer()->getLevelByName($this->getOwner()->config->get("RPGworld"))->getSafeSpawn());
             } else {
               $p->sendMessage(TF:: RED . "You do not have permission to access this class! You have to vote to use this class!");
