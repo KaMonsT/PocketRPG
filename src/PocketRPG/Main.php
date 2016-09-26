@@ -48,6 +48,11 @@ class Main extends PluginBase implements Listener {
     $this->config = new Config($this->getDataFolder(). "config.yml", Config::YAML);
     $this->playerclass = new Config($this->getDataFolder(). "class.yml", Config::YAML);
   }
+  
+  public function updateClass(Player $player, $class){
+      $this->playerclass->set($player->getName(),$class);
+      $this->playerclass->set($player->getName().".class",true);
+  }
 
   public function onDisable() {
     $this->getLogger()->info(TF:: RED . "Disabling PocketRPG");
